@@ -2,6 +2,8 @@ package com.pedrobruno.appgastos
 
 import android.app.Application
 import com.pedrobruno.appgastos.di.firebaseModule
+import com.pedrobruno.appgastos.di.repositoryModule
+import com.pedrobruno.appgastos.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -15,7 +17,9 @@ class MyApplication : Application() {
             androidLogger(Level.DEBUG)
             androidContext(this@MyApplication)
             modules(
-                firebaseModule
+                repositoryModule,
+                firebaseModule,
+                viewModelModule
             )
         }
     }
