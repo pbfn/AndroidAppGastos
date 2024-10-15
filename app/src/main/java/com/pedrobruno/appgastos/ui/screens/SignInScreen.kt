@@ -11,6 +11,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -24,12 +25,18 @@ import com.pedrobruno.appgastos.ui.theme.AppGastosTheme
 import com.pedrobruno.appgastos.ui.theme.Typography
 
 @Composable
-fun SignInScreen(modifier: Modifier = Modifier, uiState: SignInUIState, onSignInClick: () -> Unit) {
+fun SignInScreen(
+    modifier: Modifier = Modifier,
+    uiState: SignInUIState,
+    onSignInClick: () -> Unit,
+    onSignUpClick: () -> Unit
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(horizontal = 16.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterVertically)
+        verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterVertically),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
             text = "Login",
@@ -55,6 +62,10 @@ fun SignInScreen(modifier: Modifier = Modifier, uiState: SignInUIState, onSignIn
             onClick = { onSignInClick() }) {
             Text(text = "Login", style = Typography.labelLarge)
         }
+
+        TextButton(onClick = { onSignUpClick() }) {
+            Text(text = "Cadastrar")
+        }
         AnimatedVisibility(visible = uiState.error != null) {
             uiState.error?.let {
                 Box(modifier = Modifier.fillMaxWidth()) {
@@ -76,7 +87,7 @@ fun SignInScreen(modifier: Modifier = Modifier, uiState: SignInUIState, onSignIn
 @Composable
 private fun SignInScreenPreview() {
     AppGastosTheme {
-        SignInScreen(uiState = SignInUIState(), onSignInClick = {})
+        SignInScreen(uiState = SignInUIState(), onSignInClick = {}, onSignUpClick = {})
     }
 }
 
@@ -84,6 +95,9 @@ private fun SignInScreenPreview() {
 @Composable
 private fun SignInScreen2Preview() {
     AppGastosTheme {
-        SignInScreen(uiState = SignInUIState(error = "Error"), onSignInClick = {})
+        SignInScreen(
+            uiState = SignInUIState(error = "Error"),
+            onSignInClick = {},
+            onSignUpClick = {})
     }
 }
