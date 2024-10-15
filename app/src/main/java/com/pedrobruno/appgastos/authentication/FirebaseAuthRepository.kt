@@ -11,4 +11,13 @@ class FirebaseAuthRepository(
         firebaseAuth.createUserWithEmailAndPassword(email, password)
             .await()
     }
+
+    suspend fun signIn(email: String, password: String) {
+        firebaseAuth.signInWithEmailAndPassword(email, password)
+            .await()
+    }
+
+    fun signOut() {
+        firebaseAuth.signOut()
+    }
 }
