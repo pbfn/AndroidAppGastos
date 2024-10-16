@@ -16,8 +16,6 @@ class SignInViewModel(
 
     private val _uiState = MutableStateFlow(SignInUIState())
     val uiState = _uiState.asStateFlow()
-    val isAuthenticated = firebaseAuthRepository.currentUser
-        .map { it != null }
 
     init {
         _uiState.update { cureentState ->

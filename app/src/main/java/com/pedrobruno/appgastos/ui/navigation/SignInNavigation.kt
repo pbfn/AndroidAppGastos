@@ -16,19 +16,11 @@ const val signInRoute = "signIn"
 
 fun NavGraphBuilder.signInScreen(
     onNavigateToSignUp: () -> Unit,
-    onNavigateToHome: () -> Unit
 ) {
     composable(signInRoute) {
         val viewModel = koinViewModel<SignInViewModel>()
         val uiState by viewModel.uiState.collectAsState()
         val scope = rememberCoroutineScope()
-        val isAuthenticated by viewModel.isAuthenticated.collectAsState(false)
-
-        LaunchedEffect(isAuthenticated) {
-            if(isAuthenticated){
-                onNavigateToHome()
-            }
-        }
 
         SignInScreen(
             uiState = uiState,
