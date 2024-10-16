@@ -9,6 +9,9 @@ import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
 import com.pedrobruno.appgastos.ui.navigation.authGraph
 import com.pedrobruno.appgastos.ui.navigation.authGraphRoute
+import com.pedrobruno.appgastos.ui.navigation.homeGraph
+import com.pedrobruno.appgastos.ui.navigation.navigateToHome
+import com.pedrobruno.appgastos.ui.navigation.navigateToHomeGraph
 import com.pedrobruno.appgastos.ui.navigation.navigateToSignIn
 import com.pedrobruno.appgastos.ui.navigation.navigateToSignUp
 import com.pedrobruno.appgastos.ui.theme.AppGastosTheme
@@ -29,8 +32,12 @@ class MainActivity : ComponentActivity() {
                         },
                         onNavigateToSignUp = {
                             navController.navigateToSignUp()
+                        },
+                        onNavigateToHome = {
+                            navController.navigateToHomeGraph()
                         }
                     )
+                    homeGraph()
                 }
             }
         }

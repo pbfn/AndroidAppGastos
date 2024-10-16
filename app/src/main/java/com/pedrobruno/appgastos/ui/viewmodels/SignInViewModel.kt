@@ -7,6 +7,7 @@ import com.pedrobruno.appgastos.ui.states.SignInUIState
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.update
 
 class SignInViewModel(
@@ -15,6 +16,8 @@ class SignInViewModel(
 
     private val _uiState = MutableStateFlow(SignInUIState())
     val uiState = _uiState.asStateFlow()
+    val isAuthenticated = firebaseAuthRepository.currentUser
+        .map { it != null }
 
     init {
         _uiState.update { cureentState ->
